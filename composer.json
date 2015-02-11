@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Amelia\\Blog\\": "app/"
+    },
+    "files": [
+      "app/helpers.php"
+    ]
+  }
+}
