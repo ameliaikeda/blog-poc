@@ -12,8 +12,7 @@ nginx config:
 ```nginx
 server {
     ## TLS 1.2 headers for my local dev env, full config here:
-    ## https://gist.github.com/ameliaikeda/
-    ## ...
+    ## https://gist.github.com/ameliaikeda/fae73825002912f601ec
 
     index index.html index.php;
     server_name ~^(?<subdomain>[a-z0-9-]+)\..+$;
@@ -24,15 +23,6 @@ server {
 
     location / {
         try_files $uri $uri/ /index.php?$query_string;
-    }
-
-    # running on osx w/fpm
-    location ~ \.php$ {
-        include fastcgi.conf;
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_buffer_size   128k;
-        fastcgi_buffers   4 256k;
-        fastcgi_busy_buffers_size   256k;
     }
 }
 ```
