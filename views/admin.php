@@ -20,6 +20,7 @@ $posts = (new Amelia\Blog\Post($pdo))->getAll();
 
             <div class="text-center" style="max-width: 300px">
                 <a class="btn btn-default btn-block" href="/admin/create">New Post</a>
+                <a class="btn btn-info btn-block" href="/logout">Log Out</a>
             </div>
 
             <hr>

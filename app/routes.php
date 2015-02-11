@@ -12,6 +12,10 @@ switch ($route) {
         $view = "login.php";
         $methods = ["GET", "POST"];
         break;
+    case "/logout":
+        $view = "logout.php";
+        $methods = ["GET"];
+        break;
     case "/admin":
         $view = "admin.php";
         $methods = ["GET", "POST"];
