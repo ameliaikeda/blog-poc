@@ -11,7 +11,7 @@ class Post extends Model {
      */
     public function insert(array $attributes) {
         $this->prepare(
-            "insert into {$this->table} ('title', 'body') VALUES (:title, :body)",
+            "insert into {$this->table} (title, body) VALUES (:title, :body)",
             [
                 ":title" => $attributes["title"],
                 ":body"  => $attributes["body"],
