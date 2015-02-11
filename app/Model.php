@@ -48,7 +48,7 @@ abstract class Model {
     }
 
     /**
-     * Prepare a statement with correct bindings
+     * Prepare a statement with correct bindings.
      *
      * @param string $sql
      * @param array  $bindings
@@ -65,14 +65,14 @@ abstract class Model {
 
             switch (gettype($value)) {
                 case "string":
-                    $query->bindParam($name, $value, PDO::PARAM_STR);
+                    $query->bindValue($name, $value, PDO::PARAM_STR);
                     break;
                 case "integer":
                 case "double":
-                    $query->bindParam($name, $value, PDO::PARAM_INT);
+                    $query->bindValue($name, $value, PDO::PARAM_INT);
                     break;
                 case "boolean":
-                    $query->bindParam($name, $value, PDO::PARAM_BOOL);
+                    $query->bindValue($name, $value, PDO::PARAM_BOOL);
                     break;
                 default:
                     throw new Exception(get_class($this) . ": Not handling data type (" . gettype($value) .")");
