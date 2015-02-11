@@ -1,5 +1,7 @@
 <?php namespace Amelia\Blog;
 
+use PDO;
+
 class Post extends Model {
 
     protected $table = "posts";
@@ -11,7 +13,7 @@ class Post extends Model {
      */
     public function insert(array $attributes) {
         $this->prepare(
-            "insert into {$this->table} (title, body) VALUES (:title, :body)",
+            "insert into `{$this->table}` (title, body) VALUES (:title, :body)",
             [
                 ":title" => $attributes["title"],
                 ":body"  => $attributes["body"],
@@ -19,15 +21,20 @@ class Post extends Model {
         );
     }
 
+    /**
+     * Edit a blog post
+     *
+     * @param       $id
+     * @param array $attributes
+     */
     public function update($id, array $attributes) {
-        $this->prepare(
-            "update {$this->table} set title = :title, body = :body where id = :id",
-            [
-                ":id" => $id,
-                ":title" => $attributes["title"],
-                ":body" => $attributes["body"],
-            ]
-        );
+        $query = $this->pdo->prepare("update `{$this->table}` set title = :title, body = :body where id = :id");
+
+        $query->bindParam(":id", $id, PDO::PARAM_INT);
+        $query->bindParam(":title", $attributes["title"]);
+        $query->bindParam(":body", $attributes["body"]);
+
+        $query->execute();
     }
 
     /**
